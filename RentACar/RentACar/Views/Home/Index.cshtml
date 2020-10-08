@@ -1,0 +1,92 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Lista automobila</h1>
+<hr />
+<br />
+<main class="container">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create" class="btn btn-success">Upisi novi auto</a>
+        <br />
+        <br />
+    }
+    <div><h2 style="color: red">@Model.Poruka</h2></div>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Marka</th>
+                <th scope="col">Naziv</th>
+                <th scope="col">Godina</th>
+                <th scope="col">Cena</th>
+                <th scope="col">Iznajmljen</th>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                }
+                else
+                {
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                }
+            </tr>
+        </thead>
+        @foreach (var auto in Model.Automobili)
+        {
+            if (auto.IsDeleted == 0)
+            {
+                <tbody>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>@auto.Marka</td>
+                        <td>@auto.Naziv</td>
+                        <td>@auto.Godina</td>
+                        <td>@auto.Cena</td>
+                        @if (auto.IsIznajmljeno == 1)
+                        {
+                            <td>Da</td>
+                        }
+                        else
+                        {
+                            <td>Ne</td>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <td>
+                                <a asp-action="Details" asp-route-id="@auto.Id" class="btn btn-primary">Detalji</a>
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@auto.Id" class="btn btn-primary">Izmeni</a>
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@auto.Id" onclick="return confirm('Da li ste sigurni da zelite da obrisete automobil?')" class="btn btn-danger">Obrisi</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a asp-action="Book" asp-route-id="@auto.Id" class="btn btn-success">Rezervisi</a>
+                            </td>
+                            <td>
+                                <a asp-action="UnBook" onclick="return confirm('Da li ste sigurni da zelite da otkazete rezervaciju?')" asp-route-id="@auto.Id" class="btn btn-danger">Storniraj rezervaciju</a>
+                            </td>
+                            @if (auto.IsIznajmljeno == 1)
+                            {
+                                <td>
+                                    <a asp-action="Pay" asp-route-id="@auto.Id" class="btn btn-primary">Plati</a>
+                                </td>
+                            }
+                        }
+                    </tr>
+                </tbody>
+            }
+        }
+    </table>
+</main>

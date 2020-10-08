@@ -1,0 +1,27 @@
+﻿@using RentACar.Extensions
+@model RentACar.Models.OsiguranjeModel.CreateViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Upisi novo osiguranje</h1>
+<hr />
+<br />
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Id osiguranja</label>
+        <input type="text" asp-for="Osiguranje.IdOsiguranja" class="form-control">
+        <span asp-validation-for="Osiguranje.IdOsiguranja" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Tip osiguranja</label>
+        <input type="text" asp-for="Osiguranje.Tip" class="form-control">
+        <span asp-validation-for="Osiguranje.Tip" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Trajanje osiguranja</label>
+        <input type="text" asp-for="Osiguranje.Trajanje" class="form-control">
+        <span asp-validation-for="Osiguranje.Trajanje" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Upisi</button>
+</form>

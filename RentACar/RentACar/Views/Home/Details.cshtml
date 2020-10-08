@@ -1,0 +1,46 @@
+﻿@model DetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<main class="container">
+    <div class="form-group" align="center">
+        <div>
+            <label><strong>Marka</strong></label>
+            <h1>@Model.Automobil.Marka</h1>
+        </div>
+        <hr />
+        <br />
+        <div>
+            <label><strong>Naziv</strong></label>
+            <p>@Model.Automobil.Naziv</p>
+        </div>
+        <br />
+        <div>
+            <label><strong>Godiste</strong></label>
+            <p>@Model.Automobil.Godina</p>
+        </div>
+        <br />
+        <div>
+            <label><strong>Cena</strong></label>
+            <p>@Model.Automobil.Cena</p>
+        </div>
+        <br />
+        <div>
+            <label><strong>Iznajmljen?</strong></label>
+            @if (Model.Automobil.IsIznajmljeno == 0)
+            {
+                <p>Nije iznajmljen</p>
+            }
+            else
+            {
+                <p>Iznajmljen</p>
+            }
+        </div>
+        <br />
+        <div>
+            <label><strong>Osiguranje</strong></label>
+            <p>@Model.Automobil.IdOsiguranja</p>
+        </div>
+    </div>
+</main>

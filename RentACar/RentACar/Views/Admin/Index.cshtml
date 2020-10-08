@@ -1,0 +1,46 @@
+﻿@model RentACar.Models.Admin.IndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista korisnika</h1>
+<main class="container">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create" class="btn btn-success">Upisi novog korisnika</a>
+        <br />
+        <br />
+    }
+    <div>
+        <h3><strong style="color: red;">@Model.Poruka</strong></h3>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Broj telefona</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        @foreach (var user in Model.Users)
+        {
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Izmeni</a>
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@user.Id" onclick="return confirm('Da li ste sigurni da zelite da obrisete korisnika?')" class="btn btn-danger">Obrisi</a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</main>

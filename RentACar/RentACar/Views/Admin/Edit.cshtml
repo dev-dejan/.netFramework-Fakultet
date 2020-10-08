@@ -1,0 +1,27 @@
+﻿@model RentACar.Models.Admin.EditViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Izmena korisnika - @Model.User.UserName</h1>
+<hr />
+<br />
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="@Model.User.Id" />
+    <div class="form-group">
+        <label>Korisnicko ime</label>
+        <input type="text" class="form-control" asp-for="@Model.User.UserName">
+        <span asp-validation-for="User.UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Broj telefona</label>
+        <input type="text" class="form-control" asp-for="@Model.User.PhoneNumber">
+        <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" asp-for="@Model.User.Email">
+        <span asp-validation-for="User.Email" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Snimi</button>
+</form>

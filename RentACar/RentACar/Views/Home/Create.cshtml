@@ -1,0 +1,44 @@
+﻿@using RentACar.Extensions
+@model CreateViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Upisi novi automobil</h1>
+<hr />
+<br />
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Id automobila</label>
+        <input type="text" asp-for="Automobil.Id" class="form-control">
+        <span asp-validation-for="Automobil.Id" class="text-danger"></span> 
+    </div>
+    <div class="form-group">
+        <label>Marka automobila</label>
+        <input type="text" asp-for="Automobil.Marka" class="form-control">
+        <span asp-validation-for="Automobil.Marka" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Naziv automobila</label>
+        <input type="text" asp-for="Automobil.Naziv" class="form-control">
+        <span asp-validation-for="Automobil.Naziv" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Godina automobila</label>
+        <input type="text" asp-for="Automobil.Godina" class="form-control">
+        <span asp-validation-for="Automobil.Godina" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Cena</label>
+        <input type="text" asp-for="Automobil.Cena" class="form-control">
+        <span asp-validation-for="Automobil.Cena" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Osiguranje</label>
+        <select class="form-control" asp-for="Automobil.IdOsiguranja" asp-items="@Model.Osiguranjes.ToSelectList()" id="offer-placename">
+            <option selected value="">Izaberano osiguranje</option>
+        </select>
+        <span asp-validation-for="Automobil.IdOsiguranja" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Upisi</button>
+</form>

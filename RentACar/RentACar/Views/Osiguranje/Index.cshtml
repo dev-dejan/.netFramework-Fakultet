@@ -1,0 +1,45 @@
+﻿@model RentACar.Models.OsiguranjeModel.IndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista osiguranja</h1>
+<hr />
+<br />
+<main class="container">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create" class="btn btn-success">Upisi novo osiguranje</a>
+        <br />
+        <br />
+    }
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Tip</th>
+                <th scope="col">Trajanje</th>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <th scope="col"></th>
+                }
+            </tr>
+        </thead>
+        @foreach (var osiguranje in Model.Osiguranjes)
+        {
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>@osiguranje.Tip</td>
+                    <td>@osiguranje.Trajanje meseci</td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@osiguranje.IdOsiguranja" class="btn btn-primary">Izmeni</a>
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        }
+    </table>
+</main>

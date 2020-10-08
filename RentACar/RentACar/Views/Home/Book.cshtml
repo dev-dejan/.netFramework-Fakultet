@@ -1,0 +1,20 @@
+﻿@using RentACar.Extensions
+@model BookViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Iznajmi @Model.Automobil.Marka (@Model.Automobil.Naziv)</h1>
+<hr />
+<br />
+<form asp-action="Book" method="post">
+    <div class="form-group">
+        <input type="hidden" asp-for="Automobil.Id" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Broj dana</label>
+        <input type="text" asp-for="IznajmljeniAutomobil.BrojDana" class="form-control">
+        <span asp-validation-for="IznajmljeniAutomobil.BrojDana" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Upisi</button>
+</form>

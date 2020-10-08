@@ -1,0 +1,22 @@
+﻿@model RentACar.Models.OsiguranjeModel.EditViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Izmena osiguranja - @Model.Osiguranje.Tip</h1>
+<hr />
+<br />
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="@Model.Osiguranje.IdOsiguranja" />
+    <div class="form-group">
+        <label>Tip osiguranja</label>
+        <input type="text" class="form-control" asp-for="@Model.Osiguranje.Tip" placeholder="Valter brani Sarajevo">
+        <span asp-validation-for="Osiguranje.Tip" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Trajanje osiguranja</label>
+        <input type="text" class="form-control" asp-for="@Model.Osiguranje.Trajanje" placeholder="Hajrudin Krvavac">
+        <span asp-validation-for="Osiguranje.Trajanje" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Snimi</button>
+</form>
